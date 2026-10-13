@@ -10,6 +10,33 @@ Built and tested against roughly 750,000 events across five sources: authenticat
 - The same logical field changes name between versions. A hostname can be `host`, `device`, or nested inside a `record` object.
 - Some rows are malformed JSON, have no timestamp, or carry a schema tag with every value null.
 - Real attack activity is only visible when events from several sources are joined on identity, host, and time.
+- 96 flagged activities had to be classified as legitimate or a real violation, using raw log evidence and the controlling change record.
+
+## Results
+
+### Three attack chains reconstructed
+
+Each chain is supported by exact `file:line` locators in at least two sources, a rejected alternative hypothesis, and a next collection action.
+
+**1. Password spray to encoded PowerShell (auth, firewall, endpoint)**
+One external IP made one failed login per day against a VPN gateway for 12 consecutive days, always at the same time of day, using a different sequential username each day. On day 13 a login succeeded with MFA recorded as push-approved. The firewall logged an allowed connection from the same IP 8 seconds later. About 66 minutes after the login, the endpoint source recorded an encoded PowerShell command under the same identity, written in a different alias format (`user@domain` in auth, `DOMAIN\user` on the endpoint). `identity.py` resolves the two aliases to one person, which is what lets the chain join across sources.
+Rejected: one user mistyping a password repeatedly. The fixed daily cadence, single source IP, and different account each day do not fit.
+
+**2. Large unattributed outbound transfer (firewall, auth, endpoint)**
+A shared gateway sent about 885 KB to an external IP and the firewall allowed it. Among roughly 100 external destinations in the data, this was the only one with no recurring pattern, and by far the largest single transfer. The only login on that gateway that day was 8 hours earlier, and the nearest endpoint activity belonged to a different user.
+Rejected: the transfer belonging to the earlier login. The gap is too large and no session spans it.
+
+**3. Removable media copy with no authentication trail (endpoint, auth)**
+A sensitive file was copied to a USB device on a host that appears nowhere in the auth source, in any schema version. The identity on the copy had logged in once that day, on a different host, 66 minutes earlier. `file_copy` occurs once in about 150,000 endpoint events.
+Rejected: the user logging in remotely and then using their own machine. No login of any kind exists for the host where the copy happened.
+
+How they were found: first by manual exploration (rarity scans, joins across sources, timeline pulls), then re-expressed as the parameterized functions in `hunt.py`. Running those functions with generic thresholds independently surfaces the same rare event, the same external outlier, and the same spray pattern.
+
+### 96 flagged activities classified: 80 benign, 16 escalated
+
+Every activity was resolved from raw log rows tagged with its `activity_id` and the controlling change record. A benign verdict required asset, actor, approval status and time window to all match.
+
+Escalated activities are the true positives and benign ones are the false positives.
 
 ## How it works
 
