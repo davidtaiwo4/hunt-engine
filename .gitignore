@@ -1,0 +1,34 @@
+venv/
+.venv/
+.env
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# raw evidence and private material
+source/
+*.jsonl
+*discrepancy*.json
+*assignment*.md
+change-records.csv
+identity-directory.csv
+source-manifest.csv
+README.txt
+
+# generated outputs and findings
+clean.db
+results.json
+quarantine.csv
+reconciliation.json
+review_results_raw.json
+tp-fp-table.csv
+campaign-graph.json
+evidence-index.csv
+hunt-workbook-stage5.csv
+benchmark.json
+data-quality-register.csv
+continuity-record.md
+integrity-attestation.md
+assessment-manifest.json
+manifest.sha256
+normalized-timeline.csv

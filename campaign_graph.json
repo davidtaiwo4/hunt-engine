@@ -1,0 +1,143 @@
+{
+  "campaigns": [
+    {
+      "id": "campaign-1",
+      "title": "Unauthorized file copy to removable media - laptop-301",
+      "summary": "Identity nora.contractor copied a payroll file to a USB device on host laptop-301, a host with zero authentication history anywhere in the archive.",
+      "nodes": [
+        { "id": "identity:nora.contractor", "type": "identity" },
+        { "id": "host:files-01", "type": "host" },
+        { "id": "host:laptop-301", "type": "host" },
+        { "id": "file:synthetic-payroll-q2.csv", "type": "asset" }
+      ],
+      "edges": [
+        {
+          "from": "identity:nora.contractor",
+          "to": "host:files-01",
+          "relationship": "login_success",
+          "time": "2026-06-24T15:29:15Z",
+          "source": "auth",
+          "locator": "auth_jsonl.txt:19"
+        },
+        {
+          "from": "identity:nora.contractor",
+          "to": "host:laptop-301",
+          "relationship": "removable_media_mount",
+          "time": "2026-06-24T16:35:00Z",
+          "source": "endpoint",
+          "locator": "endpoint_jsonl.txt:9"
+        },
+        {
+          "from": "identity:nora.contractor",
+          "to": "file:synthetic-payroll-q2.csv",
+          "relationship": "file_copy_to_usb",
+          "time": "2026-06-24T16:35:21Z",
+          "source": "endpoint",
+          "locator": "endpoint_jsonl.txt:10"
+        }
+      ],
+      "verdict": "escalate",
+      "rejected_hypotheses": [
+        "nora.contractor used her own laptop after logging in elsewhere at files-01 - rejected: no auth record of any kind exists for laptop-301, in any schema version, top-level or nested; 66-minute gap and different host makes session continuity implausible."
+      ],
+      "next_collection_action": "Pull asset-assignment records to confirm intended owner of laptop-301; check whether its endpoint agent has an auth-telemetry gap."
+    },
+    {
+      "id": "campaign-2",
+      "title": "Unattributed large outbound transfer via shared gateway 10.41.50.22",
+      "summary": "884,944-byte outbound connection to the only external IP ever seen from this gateway, with no single user session spanning the event.",
+      "nodes": [
+        { "id": "host:gateway-10.41.50.22", "type": "host" },
+        { "id": "host:host-250", "type": "host" },
+        { "id": "identity:user075", "type": "identity" },
+        { "id": "identity:user228", "type": "identity" },
+        { "id": "external_ip:203.0.113.147", "type": "external_ip" }
+      ],
+      "edges": [
+        {
+          "from": "identity:user075",
+          "to": "host:host-250",
+          "relationship": "login_success",
+          "time": "2026-06-18T03:13:42Z",
+          "source": "auth",
+          "locator": "auth_jsonl.txt:54027"
+        },
+        {
+          "from": "host:gateway-10.41.50.22",
+          "to": "external_ip:203.0.113.147",
+          "relationship": "network_allow_884944_bytes",
+          "time": "2026-06-18T11:09:19Z",
+          "source": "firewall",
+          "locator": "firewall_jsonl.txt:7"
+        },
+        {
+          "from": "identity:user228",
+          "to": "host:host-250",
+          "relationship": "file_write",
+          "time": "2026-06-18T11:37:37Z",
+          "source": "endpoint",
+          "locator": "endpoint_jsonl.txt:117454"
+        }
+      ],
+      "verdict": "escalate",
+      "rejected_hypotheses": [
+        "Transfer tied to user075's 03:13:42 login - rejected: 8-hour gap, no session continuity, and closest endpoint activity (11:37:37) belongs to a different identity (user228) on the same shared host."
+      ],
+      "next_collection_action": "Pull gateway/proxy-level logs directly, since host-level identity attribution does not resolve on current data."
+    },
+    {
+      "id": "campaign-3",
+      "title": "Password spray against vpn-01 followed by encoded PowerShell execution (spray-v1)",
+      "summary": "12-day low-and-slow password spray from external IP 198.51.100.124 against vpn-01, succeeding on day 13 against amina-ad4 with MFA push_approved, followed 66 minutes later by obfuscated PowerShell execution under the same identity's alias on wkstn-624.",
+      "nodes": [
+        { "id": "external_ip:198.51.100.124", "type": "external_ip" },
+        { "id": "host:vpn-01", "type": "host" },
+        { "id": "identity:amina-ad4", "type": "identity" },
+        { "id": "host:wkstn-624", "type": "host" },
+        { "id": "internal_host:10.41.0.25", "type": "host" }
+      ],
+      "edges": [
+        {
+          "from": "external_ip:198.51.100.124",
+          "to": "host:vpn-01",
+          "relationship": "login_failed_bad_password_x12",
+          "time_range": "2026-06-01T02:15:00Z to 2026-06-12T02:15:00Z",
+          "source": "auth",
+          "locator": "auth_jsonl.txt:6-17"
+        },
+        {
+          "from": "external_ip:198.51.100.124",
+          "to": "identity:amina-ad4",
+          "relationship": "login_success_mfa_push_approved",
+          "time": "2026-06-13T02:15:20Z",
+          "source": "auth",
+          "locator": "auth_jsonl.txt:18",
+          "correlation_id": "spray-v1"
+        },
+        {
+          "from": "external_ip:198.51.100.124",
+          "to": "internal_host:10.41.0.25",
+          "relationship": "network_allow_4210_bytes",
+          "time": "2026-06-13T02:15:28Z",
+          "source": "firewall",
+          "locator": "firewall_jsonl.txt:6",
+          "correlation_id": "spray-v1"
+        },
+        {
+          "from": "identity:amina-ad4",
+          "to": "host:wkstn-624",
+          "relationship": "process_start_encoded_powershell",
+          "time": "2026-06-13T03:21:50Z",
+          "source": "endpoint",
+          "locator": "endpoint_jsonl.txt:6",
+          "correlation_id": "spray-v1"
+        }
+      ],
+      "verdict": "escalate",
+      "rejected_hypotheses": [
+        "Legitimate employee mistyping password 12 times over 12 days - rejected: uniform daily 02:15:00 UTC cadence, single shared source IP, and sequential different usernames each day is inconsistent with one person's own login mistakes."
+      ],
+      "next_collection_action": "Pull MFA provider logs to determine whether push_approved was a genuine user action; review wkstn-624 for post-execution artifacts."
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+benign: 80
+escalate: 16
+
+REVIEW-0048 -> benign | clean
+REVIEW-0198 -> escalate | ['time_outside_window: earliest_event=2026-06-03 09:58:05 window=[2026-06-03T06:58:05.000Z,2026-06-03T08:58:05.000Z]']
+REVIEW-0225 -> escalate | ['actor_mismatch: raw=svc-010 vs change=svc-unapproved', 'time_outside_window: earliest_event=2026-06-02 10:16:32 window=[2026-06-02T07:16:32.000Z,2026-06-02T09:16:32.000Z]']
+REVIEW-0192 -> benign | clean
+REVIEW-0056 -> benign | clean
+REVIEW-0288 -> benign | clean
+REVIEW-0282 -> benign | clean
+REVIEW-0151 -> benign | clean
+REVIEW-0024 -> benign | clean
+REVIEW-0133 -> benign | clean
+REVIEW-0150 -> benign | clean
+REVIEW-0011 -> benign | clean
+REVIEW-0021 -> benign | clean
+REVIEW-0383 -> benign | clean
+REVIEW-0366 -> benign | clean
+REVIEW-0103 -> benign | clean
+REVIEW-0268 -> benign | clean
+REVIEW-0218 -> benign | clean
+REVIEW-0095 -> benign | clean
+REVIEW-0167 -> benign | clean
+REVIEW-0364 -> benign | clean
+REVIEW-0360 -> benign | clean
+REVIEW-0205 -> escalate | ['actor_mismatch: raw=svc-026 vs change=svc-unapproved', 'time_outside_window: earliest_event=2026-06-10 10:02:52 window=[2026-06-10T07:02:52.000Z,2026-06-10T09:02:52.000Z]']
+REVIEW-0346 -> benign | clean
+REVIEW-0084 -> benign | clean
+REVIEW-0189 -> benign | clean
+REVIEW-0269 -> benign | clean
+REVIEW-0107 -> benign | clean
+REVIEW-0032 -> escalate | ['asset_mismatch: raw=asset-033 vs change=asset-999', 'time_outside_window: earliest_event=2026-06-05 09:21:52 window=[2026-06-05T06:21:52.000Z,2026-06-05T08:21:52.000Z]']
+REVIEW-0108 -> escalate | ['asset_mismatch: raw=asset-013 vs change=asset-999', 'time_outside_window: earliest_event=2026-06-25 10:13:48 window=[2026-06-25T07:13:48.000Z,2026-06-25T09:13:48.000Z]']
+REVIEW-0207 -> benign | clean
+REVIEW-0086 -> benign | clean
+REVIEW-0253 -> escalate | ['actor_mismatch: raw=svc-002 vs change=svc-unapproved', 'time_outside_window: earliest_event=2026-06-02 09:18:27 window=[2026-06-02T06:18:27.000Z,2026-06-02T08:18:27.000Z]']
+REVIEW-0299 -> benign | clean
+REVIEW-0119 -> benign | clean
+REVIEW-0277 -> benign | clean
+REVIEW-0067 -> benign | clean
+REVIEW-0091 -> benign | clean
+REVIEW-0307 -> escalate | ['time_outside_window: earliest_event=2026-06-28 09:55:21 window=[2026-06-28T06:55:21.000Z,2026-06-28T08:55:21.000Z]', 'status_not_approved: PENDING']
+REVIEW-0310 -> benign | clean
+REVIEW-0132 -> escalate | ['asset_mismatch: raw=asset-037 vs change=asset-999', 'time_outside_window: earliest_event=2026-06-21 09:12:59 window=[2026-06-21T06:12:59.000Z,2026-06-21T08:12:59.000Z]']
+REVIEW-0180 -> escalate | ['asset_mismatch: raw=asset-037 vs change=asset-999', 'time_outside_window: earliest_event=2026-06-13 09:45:47 window=[2026-06-13T06:45:47.000Z,2026-06-13T08:45:47.000Z]']
+REVIEW-0347 -> escalate | ['time_outside_window: earliest_event=2026-06-12 09:05:28 window=[2026-06-12T06:05:28.000Z,2026-06-12T08:05:28.000Z]', 'status_not_approved: PENDING']
+REVIEW-0059 -> benign | clean
+REVIEW-0138 -> benign | clean
+REVIEW-0261 -> benign | clean
+REVIEW-0137 -> benign | clean
+REVIEW-0240 -> benign | clean
+REVIEW-0368 -> benign | clean
+REVIEW-0144 -> benign | clean
+REVIEW-0135 -> benign | clean
+REVIEW-0219 -> benign | clean
+REVIEW-0129 -> benign | clean
+REVIEW-0372 -> benign | clean
+REVIEW-0043 -> escalate | ['time_outside_window: earliest_event=2026-06-16 09:29:23 window=[2026-06-16T06:29:23.000Z,2026-06-16T08:29:23.000Z]', 'status_not_approved: PENDING']
+REVIEW-0292 -> benign | clean
+REVIEW-0319 -> benign | clean
+REVIEW-0101 -> benign | clean
+REVIEW-0060 -> benign | clean
+REVIEW-0273 -> benign | clean
+REVIEW-0298 -> benign | clean
+REVIEW-0339 -> benign | clean
+REVIEW-0114 -> escalate | ['time_outside_window: earliest_event=2026-06-03 09:00:41 window=[2026-06-03T06:00:41.000Z,2026-06-03T08:00:41.000Z]']
+REVIEW-0377 -> benign | clean
+REVIEW-0250 -> benign | clean
+REVIEW-0176 -> benign | clean
+REVIEW-0336 -> escalate | ['asset_mismatch: raw=asset-001 vs change=asset-999', 'time_outside_window: earliest_event=2026-06-01 10:15:10 window=[2026-06-01T07:15:10.000Z,2026-06-01T09:15:10.000Z]']
+REVIEW-0042 -> benign | clean
+REVIEW-0363 -> benign | clean
+REVIEW-0160 -> benign | clean
+REVIEW-0069 -> benign | clean
+REVIEW-0331 -> benign | clean
+REVIEW-0051 -> benign | clean
+REVIEW-0168 -> benign | clean
+REVIEW-0242 -> benign | clean
+REVIEW-0003 -> benign | clean
+REVIEW-0139 -> benign | clean
+REVIEW-0327 -> benign | clean
+REVIEW-0161 -> escalate | ['actor_mismatch: raw=svc-018 vs change=svc-unapproved', 'time_outside_window: earliest_event=2026-06-22 09:32:48 window=[2026-06-22T06:32:48.000Z,2026-06-22T08:32:48.000Z]']
+REVIEW-0186 -> benign | clean
+REVIEW-0203 -> benign | clean
+REVIEW-0037 -> benign | clean
+REVIEW-0041 -> escalate | ['actor_mismatch: raw=svc-006 vs change=svc-unapproved', 'time_outside_window: earliest_event=2026-06-14 09:28:01 window=[2026-06-14T06:28:01.000Z,2026-06-14T08:28:01.000Z]']
+REVIEW-0318 -> benign | clean
+REVIEW-0356 -> benign | clean
+REVIEW-0083 -> benign | clean
+REVIEW-0244 -> benign | clean
+REVIEW-0369 -> benign | clean
+REVIEW-0384 -> benign | clean
+REVIEW-0232 -> benign | clean
+REVIEW-0028 -> benign | clean
+REVIEW-0286 -> benign | clean
+REVIEW-0112 -> benign | clean
+REVIEW-0079 -> benign | clean
+REVIEW-0224 -> escalate | ['asset_mismatch: raw=asset-033 vs change=asset-999', 'time_outside_window: earliest_event=2026-06-01 10:15:51 window=[2026-06-01T07:15:51.000Z,2026-06-01T09:15:51.000Z]']
+REVIEW-0174 -> benign | clean
+
+Full detail written to review_results_raw.json
+	Command being timed: "python3 src/review.py"
+	User time (seconds): 12.63
+	System time (seconds): 0.63
+	Percent of CPU this job got: 174%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:07.61
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 129160
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 815
+	Minor (reclaiming a frame) page faults: 21041
+	Voluntary context switches: 4501
+	Involuntary context switches: 42
+	Swaps: 0
+	File system inputs: 187648
+	File system outputs: 72
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

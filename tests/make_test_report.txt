@@ -1,0 +1,45 @@
+pytest -v
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /home/yallbeslayin/hunt-engine/venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/yallbeslayin/hunt-engine
+collecting ... collected 36 items
+
+tests/test_clock.py::test_apply_offset_corrects_time_forward_running_clock PASSED [  2%]
+tests/test_clock.py::test_apply_offset_corrects_time_backward_running_clock PASSED [  5%]
+tests/test_clock.py::test_apply_offset_zero_does_nothing PASSED          [  8%]
+tests/test_clock.py::test_infer_offset_from_two_anchor_times PASSED      [ 11%]
+tests/test_identity.py::test_email_style_alias PASSED                    [ 13%]
+tests/test_identity.py::test_domain_backslash_style_alias PASSED         [ 16%]
+tests/test_identity.py::test_plain_username_unchanged PASSED             [ 19%]
+tests/test_ingest.py::test_valid_json_line_parses PASSED                 [ 22%]
+tests/test_ingest.py::test_malformed_json_is_quarantined PASSED          [ 25%]
+tests/test_ingest.py::test_read_source_file_tracks_line_numbers PASSED   [ 27%]
+tests/test_ingest.py::test_read_source_file_flags_empty_lines PASSED     [ 30%]
+tests/test_normalize.py::test_auth_v1_normalizes PASSED                  [ 33%]
+tests/test_normalize.py::test_auth_v2_normalizes PASSED                  [ 36%]
+tests/test_normalize.py::test_auth_v3_normalizes PASSED                  [ 38%]
+tests/test_normalize.py::test_auth_missing_time_is_quarantined PASSED    [ 41%]
+tests/test_normalize.py::test_auth_unknown_schema_is_quarantined PASSED  [ 44%]
+tests/test_normalize.py::test_auth_row_with_time_key_but_null_value_is_quarantined PASSED [ 47%]
+tests/test_normalize.py::test_web_v1_normalizes PASSED                   [ 50%]
+tests/test_normalize.py::test_web_v2_normalizes PASSED                   [ 52%]
+tests/test_normalize.py::test_web_v3_normalizes PASSED                   [ 55%]
+tests/test_normalize.py::test_web_missing_time_is_quarantined PASSED     [ 58%]
+tests/test_normalize.py::test_web_unknown_schema_is_quarantined PASSED   [ 61%]
+tests/test_normalize.py::test_web_row_with_null_time_value_is_quarantined PASSED [ 63%]
+tests/test_normalize.py::test_dns_v1_normalizes PASSED                   [ 66%]
+tests/test_normalize.py::test_dns_v2_normalizes PASSED                   [ 69%]
+tests/test_normalize.py::test_dns_v3_normalizes PASSED                   [ 72%]
+tests/test_normalize.py::test_dns_missing_time_is_quarantined PASSED     [ 75%]
+tests/test_normalize.py::test_firewall_v1_normalizes PASSED              [ 77%]
+tests/test_normalize.py::test_firewall_v2_normalizes PASSED              [ 80%]
+tests/test_normalize.py::test_firewall_v3_normalizes PASSED              [ 83%]
+tests/test_normalize.py::test_firewall_missing_time_is_quarantined PASSED [ 86%]
+tests/test_normalize.py::test_firewall_allow_action_is_labeled_correctly PASSED [ 88%]
+tests/test_normalize.py::test_endpoint_v1_normalizes PASSED              [ 91%]
+tests/test_normalize.py::test_endpoint_v2_normalizes PASSED              [ 94%]
+tests/test_normalize.py::test_endpoint_v3_normalizes PASSED              [ 97%]
+tests/test_normalize.py::test_endpoint_missing_time_is_quarantined PASSED [100%]
+
+============================== 36 passed in 0.06s ==============================
